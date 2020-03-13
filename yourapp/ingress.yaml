@@ -4,7 +4,8 @@ metadata:
   name: myapp-ingress
   namespace: yourapp
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: "nginx"
+    # kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
   - host: myingress.local
