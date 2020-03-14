@@ -4,8 +4,8 @@ metadata:
   name: myapp-ingress
   namespace: myapp
   annotations:
-    # kubernetes.io/ingress.class: "nginx"
-    kubernetes.io/ingress.class: "traefik"
+    # kubernetes.io/ingress.class: "nginx-ingress-controller"
+    kubernetes.io/ingress.class: "traefik-ingress-controller"
 spec:
   rules:
   - host: myingress.local

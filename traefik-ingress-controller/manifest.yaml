@@ -89,7 +89,11 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
       - image: traefik:v1.7
+      # - image: traefik:v1.7-alpine
         name: traefik-ingress-lb
+        volumeMounts:
+        - mountPath: /config
+          name: config
         ports:
         - name: http
           containerPort: 80
@@ -97,8 +101,23 @@ spec:
           containerPort: 8080
         args:
         - --api
-        - --kubernetes
-        - --logLevel=INFO
+        - --configfile=/config/traefik.toml
+      volumes:
+        - name: config
+          configMap:
+            name: traefik-conf
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-conf
+  namespace: ingress-traefik
+data:
+  traefik.toml: |
+    logLevel = "INFO"
+    [accessLog]
+    [kubernetes]
+    ingressClass = "traefik-ingress-controller"
 ---
 kind: Service
 apiVersion: v1
