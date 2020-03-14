@@ -35,6 +35,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: ruizink/my-go-app:latest
+        image: ruizink/go-web-demo:v1
         ports:
         - containerPort: 8080
