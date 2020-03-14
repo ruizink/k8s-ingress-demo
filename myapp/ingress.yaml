@@ -6,6 +6,7 @@ metadata:
   annotations:
     # kubernetes.io/ingress.class: "nginx-ingress-controller"
     kubernetes.io/ingress.class: "traefik-ingress-controller"
+    traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: myingress.local

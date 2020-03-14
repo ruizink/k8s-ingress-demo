@@ -6,12 +6,13 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx-ingress-controller"
     # kubernetes.io/ingress.class: "traefik-ingress-controller"
+    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
 spec:
   rules:
   - host: myingress.local
     http:
       paths:
-      - path: /yourapp
+      - path: /yourapp(/|$)(.*)
         backend:
           serviceName: yourapp-service
           servicePort: 8080
